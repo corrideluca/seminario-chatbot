@@ -18,6 +18,9 @@ import { ChatInput } from "./chat-input"
 import { ChatMessages } from "./chat-messages"
 import { ChatScrollButtons } from "./chat-scroll-buttons"
 import { ChatSecondaryButtons } from "./chat-secondary-buttons"
+import { assistantData } from "./seminario-assisant-code"
+import SyntaxHighlighter from "react-syntax-highlighter"
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
 
 interface ChatUIProps {}
 
@@ -33,6 +36,7 @@ export const ChatUI: FC<ChatUIProps> = ({}) => {
     setChatSettings,
     setChatImages,
     assistants,
+    selectedAssistant,
     setSelectedAssistant,
     setChatFileItems,
     setChatFiles,
@@ -112,7 +116,6 @@ export const ChatUI: FC<ChatUIProps> = ({}) => {
 
     const images: MessageImage[] = await Promise.all(imagePromises.flat())
     setChatImages(images)
-
     const messageFileItemPromises = fetchedMessages.map(
       async message => await getMessageFileItemsByMessageId(message.id)
     )
@@ -148,6 +151,12 @@ export const ChatUI: FC<ChatUIProps> = ({}) => {
     })
 
     setChatMessages(fetchedChatMessages)
+  }
+
+  const getAssistantData = (assistantName: string) => {
+    if (!selectedAssistant) return null
+
+    return assistantData[assistantName.toLowerCase() as "ayudante de cocina"]
   }
 
   const fetchChat = async () => {
@@ -212,7 +221,21 @@ export const ChatUI: FC<ChatUIProps> = ({}) => {
         onScroll={handleScroll}
       >
         <div ref={messagesStartRef} />
-
+        {selectedAssistant && getAssistantData(selectedAssistant?.name) && (
+          <div className="mx-auto flex flex-col py-2">
+            <h3 className="font-lg font-bold">
+              Asistente hecho por{" "}
+              {getAssistantData(selectedAssistant?.name)?.author} con el
+              siguiente código en python:
+            </h3>
+            <SyntaxHighlighter language="python" style={oneDark}>
+              {
+                getAssistantData(selectedAssistant.name)
+                  ?.python_code_snippet as string
+              }
+            </SyntaxHighlighter>
+          </div>
+        )}
         <ChatMessages />
 
         <div ref={messagesEndRef} />

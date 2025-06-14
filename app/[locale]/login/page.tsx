@@ -167,8 +167,6 @@ export default async function Login({
         className="animate-in text-foreground flex w-full flex-1 flex-col justify-center gap-2"
         action={signIn}
       >
-        <Brand />
-
         <Label className="text-md mt-4" htmlFor="email">
           Email
         </Label>
