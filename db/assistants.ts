@@ -27,7 +27,6 @@ export const getAssistantWorkspacesByWorkspaceId = async (
       assistants (*)
     `
     )
-    .eq("id", workspaceId)
     .single()
 
   if (!workspace) {
