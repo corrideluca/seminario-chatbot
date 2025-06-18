@@ -38,7 +38,7 @@ export default function ChatPage() {
         <div className="relative flex h-full flex-col items-center justify-center">
           <div className="top-50% left-50% -translate-x-50% -translate-y-50% absolute mb-20">
             {selectedAssistant && getAssistantData(selectedAssistant?.name) && (
-              <div className="mx-auto flex flex-col py-2">
+              <div className="mx-auto flex max-w-[800px] flex-col overflow-auto py-2">
                 <h3 className="font-lg font-bold">
                   Asistente hecho por{" "}
                   {getAssistantData(selectedAssistant?.name)?.author} con el

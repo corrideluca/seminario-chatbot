@@ -222,7 +222,7 @@ export const ChatUI: FC<ChatUIProps> = ({}) => {
       >
         <div ref={messagesStartRef} />
         {selectedAssistant && getAssistantData(selectedAssistant?.name) && (
-          <div className="mx-auto flex flex-col py-2">
+          <div className="mx-auto flex max-w-[800px] flex-col overflow-auto py-2">
             <h3 className="font-lg font-bold">
               Asistente hecho por{" "}
               {getAssistantData(selectedAssistant?.name)?.author} con el
