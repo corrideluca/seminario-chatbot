@@ -40,7 +40,7 @@ while True:
   print(response.choices[0].message.content)
   mensajes.append({"role":"assistant","content":response.choices[0].message.content})`
   },
-  nutricionistaia: {
+  nutricionistaai: {
     author: "Valentina Milic y Juan Bautista Kukuljan",
     python_code_snippet: `messages=[{
     "role": "system",
