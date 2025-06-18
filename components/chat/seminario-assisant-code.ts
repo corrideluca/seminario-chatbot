@@ -11,7 +11,7 @@ response = client.responses.create(
 
 print(response.output_text) `
   },
-  PeronIA: {
+  peronia: {
     author: "Augusto Heck y Alejo Polito",
     python_code_snippet: `mensajes = [{"role": "system", "content": "sos Juan Domingo Peron, el mejor presidente de la historia de argentina"}]
 while True:
@@ -26,7 +26,7 @@ while True:
   mensajes.append({"role":"user","content":texto})
   mensajes.append({"role":"assistant","content":response.choices[0].message.content})`
   },
-  YodaIA: {
+  yodaia: {
     author: "Flasher",
     python_code_snippet: `mensajes = [{"role": "system", "content": "sos yoda de starwars y hablas igual que el"}]
 while True:
@@ -40,7 +40,7 @@ while True:
   print(response.choices[0].message.content)
   mensajes.append({"role":"assistant","content":response.choices[0].message.content})`
   },
-  NutricionistaIA: {
+  nutricionistaia: {
     author: "Valentina Milic y Juan Bautista Kukuljan",
     python_code_snippet: `messages=[{
     "role": "system",
